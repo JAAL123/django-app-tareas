@@ -1,0 +1,28 @@
+{%extends 'layouts/base.html'%}
+
+{% block content %}
+<main class="container">
+    <h1>Tareas Completadas</h1>
+    <div class="row">
+        {% for task in tasks %}
+        <div class="col-sm-6 my-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{task.title}}</h5>
+                    {% if task.important %}
+                    <h6 class="card-subtitle mb-2 text-muted">Prioridad Alta</h6>
+                    {% else %}
+                    <h6 class="card-subtitle mb-2 text-muted">Prioridad Baja</h6>
+                    {% endif %}
+                    <h6 class="card-subtitle mb-2 text-muted">Fecha completada: {{task.datecompleted}} </h6>
+                    <a href="{% url 'taskDetail' task.id %}" class="card-link">Ver Detalle</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
+
+<div>
+</div>

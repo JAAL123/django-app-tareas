@@ -1,0 +1,25 @@
+{%extends 'layouts/base.html'%}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body my-5 ">
+                <h1 class="text-center">Signin</h1>
+                {{ error }}
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">Nombre Usuario:</label>
+                    <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario">
+                </div>
+                <div class="mb-3">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña">
+                </div>
+                <button class="btn btn-dark">Signin</button>
+            </form>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

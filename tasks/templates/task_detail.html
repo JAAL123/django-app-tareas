@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Detalle de Tarea</h1>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <h5 class="card-header">{{ task.title }}</h5>
+                <div class="card-body">
+                    <p class="card-text">{{ task.description }}</p>
+                </div>
+                {% if task.datecompleted == Null %}
+                <div class="card-footer text-muted">Creada: {{ task.created }}</div>
+                {% else %}
+                <div class="card-footer text-muted">Completada: {{ task.datecompleted }}</div>
+                {% endif %}
+            </div>
+            {% if task.datecompleted == Null %}
+            <div class="mt-2">
+                <form method="POST" action="{% url 'completeTask' task.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-dark">Completada ✅</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

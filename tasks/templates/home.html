@@ -1,0 +1,28 @@
+{%extends 'layouts/base.html'%}
+
+{% block content %}
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">Home</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore quibusdam veniam et sit officia eveniet
+            impedit vel
+            sapiente sed, in neque architecto accusantium, enim atque ipsum. Et, eum voluptate? Mollitia! Lorem ipsum
+            dolor sit
+            amet, consectetur adipisicing elit. Earum dolor sed harum explicabo deleniti maxime alias ipsum nemo, qui
+            beatae,
+            eaque officiis voluptas unde assumenda asperiores est totam ad enim? Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Nulla sunt, accusamus magni dolore doloribus deserunt tenetur autem esse repudiandae
+            impedit!
+            Placeat tenetur officiis sunt. Saepe accusamus impedit expedita voluptatum ullam.
+            Modi eligendi cumque incidunt provident nisi possimus eveniet, tenetur nostrum sit! Molestiae debitis
+            deleniti sequi
+            inventore enim praesentium earum, nihil distinctio totam pariatur aliquid cum impedit ab labore in commodi.
+            
+            <div class="containter text-center">
+                <a href="{% url 'signin' %}" class="btn btn-secondary">Signin</a>
+                <a href="{% url 'signup' %}" class="btn btn-dark">Signup</a>
+            </div>
+        </p>
+    </section>
+</main>
+{% endblock %}
