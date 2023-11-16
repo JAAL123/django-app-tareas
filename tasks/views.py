@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from django.core.paginator import Paginator
 from .forms import createTaskForm
 from .models import Tasks
 from django.utils import timezone
@@ -68,7 +69,11 @@ def pending_tasks(request):
     tasks = Tasks.objects.filter(
         user=request.user, datecompleted__isnull=True
     ).order_by("-important")
-    return render(request, "tasks.html", {"tasks": tasks})
+    paginator = Paginator(tasks, 6) #
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)    
+    return render(request, "tasks.html", {"tasks": page_obj})
 
 
 def completed_tasks(request):
@@ -88,7 +93,7 @@ def create_task(request):
             newTask = form.save(commit=False)
             newTask.user = request.user
             newTask.save()
-            return redirect('tasks')
+            return redirect("tasks")
         except Exception as e:
             return render(
                 request, "create_task.html", {"form": createTaskForm, "error": str(e)}
