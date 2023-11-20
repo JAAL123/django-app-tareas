@@ -4,6 +4,7 @@
 <main class="container mt-2">
     <h1>Tareas Pendientes</h1>
     <div class="row">
+    {% if tasks_obj != 0 %}
         {% for task in tasks %}
         <div class="col-sm-6 my-1">
             <div class="card">
@@ -34,6 +35,11 @@
                 {% endif %}
             </ul>
         </nav>
+    {% else %}
+        <div class="alert alert-warning my-3 text-center">No hay tareas Pendientes</div>
+    {% endif %}
+
+
     </div>
 </main>
 {% endblock %}

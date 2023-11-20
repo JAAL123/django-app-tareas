@@ -65,21 +65,26 @@ def home(request):
     return render(request, "home.html")
 
 
+@login_required
 def pending_tasks(request):
     tasks = Tasks.objects.filter(
         user=request.user, datecompleted__isnull=True
     ).order_by("-important")
-    paginator = Paginator(tasks, 6) #
+    tasks_obj = tasks.count()
+    paginator = Paginator(tasks, 6)  #
 
     page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)    
-    return render(request, "tasks.html", {"tasks": page_obj})
+    page_obj = paginator.get_page(page_number)
+    print(tasks_obj)
+    return render(request, "tasks.html", {"tasks": page_obj, "tasks_obj": tasks_obj})
 
 
+@login_required
 def completed_tasks(request):
     tasks = Tasks.objects.filter(
         user=request.user, datecompleted__isnull=False
     ).order_by("datecompleted")
+    print(tasks)
     return render(request, "completed_tasks.html", {"tasks": tasks})
 
 
